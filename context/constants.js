@@ -2,7 +2,7 @@ const networks = {
   sepolia: {
     chainId: `0x${Number(11155111).toString(16)}`,
     chainName: "Sepolia",
-    nativeCurrency: {
+    nativeCurrency: { 
       name: "SepoliaETH",
       symbol: "SepoliaETH",
       decimals: 18,
