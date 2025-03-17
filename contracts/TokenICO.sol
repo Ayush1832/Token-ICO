@@ -61,5 +61,9 @@ contract TokenICO {
             _tokenAmount <= token.balanceOf(address(this)),
             "Not enough tokens left for sale"
         );
+
+        require(token.transfer(msg.sender, _tokenAmount * 1e18));
+
+        payable(owner).transfer(msg.value);
     }
 }
