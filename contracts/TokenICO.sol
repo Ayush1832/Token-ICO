@@ -65,5 +65,47 @@ contract TokenICO {
         require(token.transfer(msg.sender, _tokenAmount * 1e18));
 
         payable(owner).transfer(msg.value);
+
+        soldTokens += _tokenAmount;
+    }
+
+    function getTokenDetails()
+        public
+        view
+        returns (
+            string memory name,
+            string memory symbol,
+            uint256 balance,
+            uint256 supply,
+            uint256 tokenPrice,
+            address tokenAddr
+        )
+    {
+        ERC20 token = ERC20(tokenAddress);
+        return (
+            token.name(),
+            token.symbol(),
+            token.balanceOf(address(this)),
+            token.totalSupply(),
+            tokenSalePrice,
+            tokenAddress
+        );
+    }
+
+    function transferToOwner(uint256 _amount) external payable {
+        require(msg.value >= _amount, "Invalid amount sent");
+
+        (bool success, ) = owner.call{value: _amount}("");
+        require(success, "Transfer failed");
+    }
+
+    function transferEther(
+        address payable _receiver,
+        uint256 _amount
+    ) external payable {
+        require(msg.value >= _amount, "Invalid amount sent");
+
+        (bool success, ) = _receiver.call{value: _amount}("");
+        require(success, "Transfer failed");
     }
 }
