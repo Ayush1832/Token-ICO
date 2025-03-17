@@ -108,4 +108,13 @@ contract TokenICO {
         (bool success, ) = _receiver.call{value: _amount}("");
         require(success, "Transfer failed");
     }
+
+    function withdrawAllTokens() external onlyOwner {
+        ERC20 token = ERC20(tokenAddress);
+
+        uint256 balance = token.balanceOf(address(this));
+        require(balance > 0, "No tokens to withdraw");
+
+        require(token.transfer(owner, balance), "Transfer failed");
+    }
 }
