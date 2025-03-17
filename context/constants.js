@@ -1,8 +1,24 @@
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
+
+//Internal Imports
+import tokenICO from "./TokenICO.json";
+import erc20 from "./ERC20.json";
+
+export const TOKEN_ICO_ADDRESS = "";
+export const ERC20_ADDRESS = "";
+
+export const OWNER_ADDRESS = "";
+
+export const CONTRACT_ADDRESS = "";
+
+export const CONTRACT_ABI = tokenICO;
+
 const networks = {
   sepolia: {
     chainId: `0x${Number(11155111).toString(16)}`,
     chainName: "Sepolia",
-    nativeCurrency: { 
+    nativeCurrency: {
       name: "SepoliaETH",
       symbol: "SepoliaETH",
       decimals: 18,
@@ -100,5 +116,26 @@ const networks = {
   },
 };
 
+const changeNetwork = async ({networkName}) => {
+  try {
+    if(!window.ethereum) throw new Error("No crypto wallet found");
+    await window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [
+        {
+          ...networks[networkName]
+        }
+      ]
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const handleNetworkSwitch = async() => {
+  const networkName = "polygon_amoy";
+  await changeNetwork({networkName});
+}
+
 const tokenImage =
-      "https://www.daulathussain.com/wp-content/uploads/2024/05/theblockchaincoders.jpg";
+  "https://www.daulathussain.com/wp-content/uploads/2024/05/theblockchaincoders.jpg";
