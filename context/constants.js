@@ -116,26 +116,49 @@ const networks = {
   },
 };
 
-const changeNetwork = async ({networkName}) => {
+const changeNetwork = async ({ networkName }) => {
   try {
-    if(!window.ethereum) throw new Error("No crypto wallet found");
+    if (!window.ethereum) throw new Error("No crypto wallet found");
     await window.ethereum.request({
       method: "wallet_addEthereumChain",
       params: [
         {
-          ...networks[networkName]
-        }
-      ]
+          ...networks[networkName],
+        },
+      ],
     });
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-export const handleNetworkSwitch = async() => {
+export const handleNetworkSwitch = async () => {
   const networkName = "polygon_amoy";
-  await changeNetwork({networkName});
+  await changeNetwork({ networkName });
+};
+
+export const CHECK_WALLET_CONNECTED = async () => {
+  if (!window.ethereum) return console.log("Please install metamask");
+  await handleNetworkSwitch();
+
+  const account = await window.ethereum.request({
+    method: "eth_accounts",
+  });
+  if(account.length) {
+    return account[0];
+  } else {
+    console.log("Please install Metamask & Connect, Reload the page");
+  }
+};
+
+export const CONNECT_WALLET = async () => {
+  try{
+
+  } catch(error) {
+    console.error(error);
+  }
 }
+  
 
 const tokenImage =
   "https://www.daulathussain.com/wp-content/uploads/2024/05/theblockchaincoders.jpg";
