@@ -25,70 +25,89 @@ export const TOKEN_ICO_Provider = ({ children }) => {
   const [account, setAccount] = useState();
   const [count, setCount] = useState(0);
 
-  const notifySuccess = (msg)=> toast.success(msg, { duration: 2000 });
-  const notifyError = (msg)=> toast.error(msg, { duration: 2000 });
+  const notifySuccess = (msg) => toast.success(msg, { duration: 2000 });
+  const notifyError = (msg) => toast.error(msg, { duration: 2000 });
 
+  //CONTRACT FUNCTIONS
   const TOKEN_ICO = async () => {
-    try{
+    try {
+      const address = await CHECK_WALLET_CONNECTED();
+      if (address) {
+        setLoader(true);
+        setAccount(address);
+        const contract = await TOKEN_ICO_CONTRACT();
 
-    }catch{
+        const tokenDetails = await contract.getTokenDetails();
+        const contractOwner = await contract.owner();
+        const soldTokens = await contract.soldTokens();
 
+        const ethBal = await GET_BALANCE();
+
+        const token = {
+          tokenBal: ethers.utils.formatEther(tokenDetails.balance.toString()),
+          name: tokenDetails.name,
+          symbol: tokenDetails.symbol,
+          supply: ethers.utils.formatEther(tokenDetails.supply.toString()),
+          tokenPrice: ethers.utils.formatEther(
+            tokenDetails.tokenPrice.toString()
+          ),
+          tokenAddr: tokenDetails.tokenAddr,
+          maticBal: ethBal,
+          address: address.toLowerCase(),
+          owner: contractOwner.toLowerCase(),
+          soldTokens: soldTokens.toLowerCase(),
+        };
+        setLoader(false);
+        return token;
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
-  const BUY_TOKEN = async () => {
-    try{
+  const BUY_TOKEN = async (amount) => {
+    try {
+      const address = await CHECK_WALLET_CONNECTED();
+      if (address) {
+        setLoader(true);
+        setAccount(address);
+        const contract = await TOKEN_ICO_CONTRACT();
 
-    }catch{
-        
+        setLoader(false);
+        return token;
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   const TOKEN_WITHDRAW = async () => {
-    try{
-
-    }catch{
-        
-    }
-  }
+    try {
+    } catch {}
+  };
 
   const UPDATE_TOKEN = async () => {
-    try{
-
-    }catch{
-        
-    }
-  }
+    try {
+    } catch {}
+  };
 
   const UPDATE_TOKEN_PRICE = async () => {
-    try{
+    try {
+    } catch {}
+  };
 
-    }catch{
-        
-    }
-  }
-
-  const DONAATE = async () => {
-    try{
-
-    }catch{
-        
-    }
-  }
+  const DONATE = async () => {
+    try {
+    } catch {}
+  };
 
   const TRANSFER_ETHER = async () => {
-    try{
-
-    }catch{
-        
-    }
-  }
+    try {
+    } catch {}
+  };
 
   const TRANSFER_TOKEN = async () => {
-    try{
-
-    }catch{
-        
-    }
-  }
+    try {
+    } catch {}
+  };
 };
