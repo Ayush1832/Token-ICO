@@ -62,52 +62,199 @@ export const TOKEN_ICO_Provider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
     }
   };
 
   const BUY_TOKEN = async (amount) => {
     try {
+      setLoader(true);
       const address = await CHECK_WALLET_CONNECTED();
-      if (address) {
-        setLoader(true);
-        setAccount(address);
-        const contract = await TOKEN_ICO_CONTRACT();
 
-        setLoader(false);
-        return token;
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+        const tokenDetails = await contract.getTokenDetails();
+
+        const availableTokens = ethers.utils.formatEther(
+          tokenDetails.balance.toString()
+        );
+
+        if (availableTokens > 1) {
+          const price = ethers.utils.formatEther(
+            tokenDetails.tokenPrice.toString()
+          );
+
+          const payAmount = ethers.utils.parseUnits(price.toString(), "ether");
+
+          const transaction = await contract.buyToken(Number(amount), {
+            value: payAmount.toString(),
+            gasLimit: ethers.utils.hexlify(8000000),
+          });
+
+          await transaction.wait();
+          setLoader(false);
+          notifySuccess("Transaction Successful");
+          window.location.reload();
+        }
       }
     } catch (error) {
       console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
     }
   };
 
   const TOKEN_WITHDRAW = async () => {
     try {
-    } catch {}
+      setLoader(true);
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+        const tokenDetails = await contract.getTokenDetails();
+
+        const availableTokens = ethers.utils.formatEther(
+          tokenDetails.balance.toString()
+        );
+
+        if (availableTokens > 1) {
+          const transaction = await contract.withdrawAllTokens();
+
+          await transaction.wait();
+          setLoader(false);
+          notifySuccess("Transaction Successful");
+          window.location.reload();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 
-  const UPDATE_TOKEN = async () => {
+  const UPDATE_TOKEN = async (_address) => {
     try {
-    } catch {}
+      setLoader(true);
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+
+        const transaction = await contract.updateToken(_address);
+
+        await transaction.wait();
+        setLoader(false);
+        notifySuccess("Transaction Successful");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 
-  const UPDATE_TOKEN_PRICE = async () => {
+  const UPDATE_TOKEN_PRICE = async (price) => {
     try {
-    } catch {}
+      setLoader(true);
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+        const payAmount = ethers.utils.parseUnits(price.toString(), "ether");
+
+        const transaction = await contract.updateTokenSalePrice(payAmount);
+
+        await transaction.wait();
+        setLoader(false);
+        notifySuccess("Transaction Successful");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 
-  const DONATE = async () => {
+  const DONATE = async (AMOUNT) => {
     try {
-    } catch {}
+      setLoader(true);
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+        const payAmount = ethers.utils.parseUnits(AMOUNT.toString(), "ether");
+
+        const transaction = await contract.transferToOwner(payAmount, {
+          value: payAmount.toString(),
+          gasLimit: ethers.utils.hexlify(8000000),
+        });
+
+        await transaction.wait();
+        setLoader(false);
+        notifySuccess("Transaction Successful");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 
-  const TRANSFER_ETHER = async () => {
+  const TRANSFER_ETHER = async (transfer) => {
     try {
-    } catch {}
+      setLoader(true);
+      const { _receiver, _amount } = transfer;
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await TOKEN_ICO_CONTRACT();
+        const payAmount = ethers.utils.parseUnits(_amount.toString(), "ether");
+
+        const transaction = await contract.transferEther(_receiver, payAmount, {
+          value: payAmount.toString(),
+          gasLimit: ethers.utils.hexlify(8000000),
+        });
+
+        await transaction.wait();
+        setLoader(false);
+        notifySuccess("Transaction Successful");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 
   const TRANSFER_TOKEN = async () => {
     try {
-    } catch {}
+      setLoader(true);
+      const { _tokenAddress, _sendTo, _amount } = transfer;
+      const address = await CHECK_WALLET_CONNECTED();
+
+      if (address) {
+        const contract = await ERC20_CONTRACT(_tokenAddress);
+        const payAmount = ethers.utils.parseUnits(_amount.toString(), "ether");
+
+        const transaction = await contract.transfer(_sendTo, payAmount, {
+          gasLimit: ethers.utils.hexlify(8000000),
+        });
+
+        await transaction.wait();
+        setLoader(false);
+        notifySuccess("Transaction Successful");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError("Transaction Failed, please try again later");
+      setLoader(false);
+    }
   };
 };
