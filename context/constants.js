@@ -128,7 +128,7 @@ const changeNetwork = async ({ networkName }) => {
       ],
     });
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
   }
 };
 
@@ -184,7 +184,7 @@ export const TOKEN_ICO_CONTRACT = async () => {
   }
 };
 
-export const ERC20 = async () => {
+export const ERC20 = async (ADDRESS) => {
   try {
     const Wweb3Modal = new Web3Modal();
     const connection = await Web3Modal.connect();
@@ -192,6 +192,8 @@ export const ERC20 = async () => {
     const network = provider.getNetwork();
     const signer = provider.getSigner();
 
+    const contract = fetchContract(ADDRESS, ERC20_ABI, signer);
+    
     const userAddress = await signer.getAddress();
     const balance = await contract.balanceOf(userAddress);
 

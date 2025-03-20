@@ -14,7 +14,7 @@ import {
   addtokentoMetamask,
 } from "./constants";
 
-export const TOKEN_ICO_context = React.createContext();
+export const TOKEN_ICO_Context = React.createContext();
 
 export const TOKEN_ICO_Provider = ({ children }) => {
   const DAPP_NAME = "Token ICO";
@@ -259,7 +259,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
   };
 
   return (
-    <TOKEN_ICO_context.Provider
+    <TOKEN_ICO_Context.Provider
       value={{
         TOKEN_ICO,
         BUY_TOKEN,
@@ -282,6 +282,6 @@ export const TOKEN_ICO_Provider = ({ children }) => {
       }}
     >
       {children}
-    </TOKEN_ICO_context.Provider>
+    </TOKEN_ICO_Context.Provider>
   );
 };
