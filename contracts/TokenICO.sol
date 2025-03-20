@@ -47,7 +47,8 @@ contract TokenICO {
     }
 
     function multiply(uint256 x, uint256 y) internal pure returns (uint256 z) {
-        require(y == 0 || (z = x * y) / y == x);
+        require(y == 0 || (z = x * y) / y == x, "Multiplication overflow");
+        return z;
     }
 
     function buyToken(uint256 _tokenAmount) public payable {

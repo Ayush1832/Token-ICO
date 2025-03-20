@@ -14,7 +14,7 @@ import {
   addtokentoMetamask,
 } from "./constants";
 
-export const TOKEN_ICO_CONTRACT = React.createContext();
+export const TOKEN_ICO_context = React.createContext();
 
 export const TOKEN_ICO_Provider = ({ children }) => {
   const DAPP_NAME = "Token ICO";
@@ -257,4 +257,31 @@ export const TOKEN_ICO_Provider = ({ children }) => {
       setLoader(false);
     }
   };
+
+  return (
+    <TOKEN_ICO_context.Provider
+      value={{
+        TOKEN_ICO,
+        BUY_TOKEN,
+        TRANSFER_ETHER,
+        DONATE,
+        UPDATE_TOKEN,
+        UPDATE_TOKEN_PRICE,
+        TOKEN_WITHDRAW,
+        TRANSFER_TOKEN,
+        CONNECT_WALLET,
+        ERC20,
+        CHECK_ACCOUNT_BALANCE,
+        setAccount,
+        setLoader,
+        addtokentoMetamask,
+        TOKEN_ADDRESS,
+        loader,
+        account,
+        currency,
+      }}
+    >
+      {children}
+    </TOKEN_ICO_context.Provider>
+  );
 };
