@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 
-//Internal Imports
+// Internal Imports
 import tokenICO from "./TokenICO.json";
 import erc20 from "./ERC20.json";
 
@@ -127,8 +127,9 @@ const changeNetwork = async ({ networkName }) => {
         },
       ],
     });
+    console.log(`Switched to network: ${networkName}`);
   } catch (error) {
-    console.log(error.message);
+    console.error("Error switching network:", error.message);
   }
 };
 
@@ -138,42 +139,73 @@ export const handleNetworkSwitch = async () => {
 };
 
 export const CHECK_WALLET_CONNECTED = async () => {
-  if (!window.ethereum) return console.log("Please install metamask");
+  if (!window.ethereum) {
+    console.log("Please install Metamask");
+    return;
+  }
+
   await handleNetworkSwitch();
 
-  const account = await window.ethereum.request({
-    method: "eth_accounts",
-  });
-  if (account.length) {
-    return account[0];
-  } else {
-    console.log("Please install Metamask & Connect, Reload the page");
+  try {
+    const accounts = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+
+    if (accounts.length) {
+      console.log("Wallet connected:", accounts[0]);
+      return accounts[0];
+    } else {
+      console.log("No accounts found. Requesting connection...");
+
+      // Prompt Metamask to connect if no accounts are found
+      const newAccounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      if (newAccounts.length) {
+        console.log("Wallet connected:", newAccounts[0]);
+        return newAccounts[0];
+      }
+    }
+  } catch (error) {
+    console.error("Error checking wallet connection:", error);
   }
 };
 
 export const CONNECT_WALLET = async () => {
   try {
-    if (!window.ethereum) return console.log("Please install metamask");
+    if (!window.ethereum) {
+      console.log("Please install Metamask");
+      return;
+    }
+
     await handleNetworkSwitch();
 
-    const account = await window.ethereum.request({
+    const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
 
-    window.location.reload();
-
-    return account[0];
+    if (accounts.length) {
+      console.log("Wallet connected:", accounts[0]);
+      window.location.reload();
+      return accounts[0];
+    } else {
+      console.log(
+        "No accounts found. Please connect your wallet and reload the page."
+      );
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Error connecting wallet:", error);
   }
 };
 
 const fetchContract = (address, abi, signer) =>
   new ethers.Contract(address, abi, signer);
+
 export const TOKEN_ICO_CONTRACT = async () => {
   try {
-    const Wweb3Modal = new Web3Modal();
-    const connection = await Web3Modal.connect();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
@@ -186,14 +218,14 @@ export const TOKEN_ICO_CONTRACT = async () => {
 
 export const ERC20 = async (ADDRESS) => {
   try {
-    const Wweb3Modal = new Web3Modal();
-    const connection = await Web3Modal.connect();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-    const network = provider.getNetwork();
+    const network = await provider.getNetwork();
     const signer = provider.getSigner();
 
     const contract = fetchContract(ADDRESS, ERC20_ABI, signer);
-    
+
     const userAddress = await signer.getAddress();
     const balance = await contract.balanceOf(userAddress);
 
@@ -221,8 +253,8 @@ export const ERC20 = async (ADDRESS) => {
 
 export const ERC20_CONTRACT = async (CONTRACT_ADDRESS) => {
   try {
-    const Wweb3Modal = new Web3Modal();
-    const connection = await Web3Modal.connect();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
@@ -235,8 +267,8 @@ export const ERC20_CONTRACT = async (CONTRACT_ADDRESS) => {
 
 export const GET_BALANCE = async () => {
   try {
-    const Wweb3Modal = new Web3Modal();
-    const connection = await Web3Modal.connect();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
@@ -250,10 +282,9 @@ export const GET_BALANCE = async () => {
 
 export const CHECK_ACCOUNT_BALANCE = async (ADDRESS) => {
   try {
-    const Wweb3Modal = new Web3Modal();
-    const connection = await Web3Modal.connect();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-    
 
     const maticBal = await provider.getBalance(ADDRESS);
 
@@ -264,40 +295,37 @@ export const CHECK_ACCOUNT_BALANCE = async (ADDRESS) => {
 };
 
 export const addtokentoMetamask = async () => {
-  if(window.ethereum) {
+  if (window.ethereum) {
     const tokenDetails = await ERC20(TOKEN_ADDRESS);
     const tokenDecimals = tokenDetails?.decimals;
-    const tokenAddress = TOKEN_ADDRESS
+    const tokenAddress = TOKEN_ADDRESS;
     const tokenSymbol = tokenDetails?.symbol;
     const tokenImage =
-  "https://www.daulathussain.com/wp-content/uploads/2024/05/theblockchaincoders.jpg";
+      "https://www.daulathussain.com/wp-content/uploads/2024/05/theblockchaincoders.jpg";
 
+    try {
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
 
-  try{
-const wasAdded = await window.ethereum.request({
-  method: 'wallet_watchAsset',
-  params: {
-    type: 'ERC20',
-    options: {
-      address: tokenAddress,
-      symbol: tokenSymbol,
-      decimals: tokenDecimals,
-      image: tokenImage,
-    },
-  },
-});
-
-if(wasAdded) {
-return "Token added";
-} else {
-  return "Token not added";
-}
-  } catch(error) {
-return "failed to add"
+      if (wasAdded) {
+        return "Token added";
+      } else {
+        return "Token not added";
+      }
+    } catch (error) {
+      return "failed to add";
+    }
+  } else {
+    return "Metamask not installed";
   }
-
-
-  } else{
-    return "Metamask not installed"
-  }
-}
+};

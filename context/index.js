@@ -55,7 +55,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
           maticBal: ethBal,
           address: address.toLowerCase(),
           owner: contractOwner.toLowerCase(),
-          soldTokens: soldTokens.toLowerCase(),
+          soldTokens: soldTokens.toNumber(),
         };
         setLoader(false);
         return token;
