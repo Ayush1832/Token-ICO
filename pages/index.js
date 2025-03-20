@@ -66,7 +66,92 @@ function index() {
     fetchData();
   }, [account]);
 
-  return <div>@Ayush</div>;
-};
+  return (
+    <>
+      @
+      <div className="body-wrap">
+        {ownerModel && (
+          <Owner
+            setOwnerModel={setOwnerModel}
+            currency={currency}
+            detail={detail}
+            account={account}
+            setTransferModel={setTransferModel}
+            setTransferCurrency={setTransferCurrency}
+            setOpenDonate={setOpenDonate}
+            TOKEN_WITHDRAW={TOKEN_WITHDRAW}
+            setOpenUpdatePrice={setOpenUpdatePrice}
+            setOpenUpdateAddress={setOpenUpdateAddress}
+          />
+        )}
+
+        {buyModel && (
+          <Popup
+            setBuyModel={setBuyModel}
+            BUY_TOKEN={BUY_TOKEN}
+            currency={currency}
+            detail={detail}
+            account={account}
+            ERC20={ERC20}
+            TOKEN_ADDRESS={TOKEN_ADDRESS}
+            setLoader={setLoader}
+          />
+        )}
+
+        {transferModel && (
+          <TransferToken
+            setTransferModel={setTransferModel}
+            TRANSFER_TOKEN={TRANSFER_TOKEN}
+            ERC20={ERC20}
+            setLoader={setLoader}
+          />
+        )}
+
+        {transferCurrency && (
+          <TransferCurrency
+            setTransferCurrency={setTransferCurrency}
+            TRANSFER_ETHER={TRANSFER_ETHER}
+            detail={detail}
+            currency={currency}
+            CHECK_ACCOUNT_BALANCE={CHECK_ACCOUNT_BALANCE}
+            setLoader={setLoader}
+          />
+        )}
+
+        {openDonate && (
+          <Donate
+            detail={detail}
+            currency={currency}
+            setOpenDonate={setOpenDonate}
+            DONATE={DONATE}
+          />
+        )}
+
+        {openUpdatePrice && (
+          <UpdatePrice
+            setOpenUpdatePrice={setOpenUpdatePrice}
+            UPDATE_TOKEN_PRICE={UPDATE_TOKEN_PRICE}
+            currency={currency}
+            detail={detail}
+          />
+        )}
+
+        {openUpdateAddress && (
+          <UpdateAddress
+            setOpenUpdateAddress={setOpenUpdateAddress}
+            UPDATE_TOKEN={UPDATE_TOKEN}
+            currency={currency}
+            detail={detail}
+            ERC20={ERC20}
+            setLoader={setLoader}
+          />
+        )}
+        {loader && <Loader />}
+
+        
+      </div>
+    </>
+  );
+}
 
 export default index;
