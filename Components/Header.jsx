@@ -40,15 +40,67 @@ const Header = (
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        setAccount(accounts[0])
+        setAccount(accounts[0]);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }else{
-      console.log("Metamask is not installed")
+    } else {
+      console.log("Metamask is not installed");
     }
   };
-  return <div>Header</div>;
+  return (
+    <header className="site-header header--transparent ico-header">
+      <div className="header__main-wrap">
+        <div className="container mxw_1640">
+          <div className="header__main ul_li_between">
+            <div className="header__left ul_li">
+              <div className="header__logo">
+                <a href="/">
+                  <img src="assets/img/logo/logo.svg" alt="" />
+                </a>
+              </div>
+            </div>
+            <div className="main-menu__wrap ul_li navbar navbar-expand-xl">
+              <nav className="main-menu collapse navbar-collapse">
+                <ul>
+                  <li className="active has-mega-menu">
+                    <a href="/">Home</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a href="#about">About</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a href="#roadmap">RoadMap</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a href="#team">Team</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a href="#faq">Faq</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a href="#contact">Contact</a>
+                  </li>
+                  <li className="scrollspy-btn">
+                    <a
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        ownerModel ? setOwnerModel(false) : setOwnerModel(true)
+                      }
+                    >
+                      Tools
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

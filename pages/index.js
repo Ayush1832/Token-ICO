@@ -68,7 +68,6 @@ function index() {
 
   return (
     <>
-      @
       <div className="body-wrap">
         {ownerModel && (
           <Owner
