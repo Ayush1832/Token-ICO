@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Header = (
+const Header = ({
   account,
   CONNECT_WALLET,
   setAccount,
@@ -9,8 +9,8 @@ const Header = (
   shortenAddress,
   detail,
   currency,
-  ownerModel
-) => {
+  ownerModel,
+}) => {
   const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(false);
 
   useEffect(() => {
@@ -66,23 +66,34 @@ const Header = (
                   <li className="active has-mega-menu">
                     <a href="/">Home</a>
                   </li>
-                  <li className="scrollspy-btn">
-                    <a href="#about">About</a>
+                  <li>
+                    <a className="scrollspy-btn" href="#about">
+                      About
+                    </a>
                   </li>
-                  <li className="scrollspy-btn">
-                    <a href="#roadmap">RoadMap</a>
+                  <li>
+                    <a className="scrollspy-btn" href="#roadmap">
+                      RoadMap
+                    </a>
                   </li>
-                  <li className="scrollspy-btn">
-                    <a href="#team">Team</a>
+                  <li>
+                    <a className="scrollspy-btn" href="#team">
+                      Team
+                    </a>
                   </li>
-                  <li className="scrollspy-btn">
-                    <a href="#faq">Faq</a>
+                  <li>
+                    <a className="scrollspy-btn" href="#faq">
+                      Faq
+                    </a>
                   </li>
-                  <li className="scrollspy-btn">
-                    <a href="#contact">Contact</a>
+                  <li>
+                    <a className="scrollspy-btn" href="#contact">
+                      Contact
+                    </a>
                   </li>
-                  <li className="scrollspy-btn">
+                  <li>
                     <a
+                      className="scrollspy-btn"
                       style={{
                         cursor: "pointer",
                       }}
@@ -95,6 +106,36 @@ const Header = (
                   </li>
                 </ul>
               </nav>
+            </div>
+            <div className="header__action ul_li">
+              <div className="d-xl-none">
+                <a className="header__bar hamburger_menu">
+                  <div className="header__bar-icon">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </a>
+              </div>
+
+              {account ? (
+                <div className="header__account">
+                  <a
+                    onClick={() =>
+                      navigator.clipboard.writeText(detail?.address)
+                    }
+                  >
+                    {shortenAddress(detail?.address)}:
+                    {detail?.maticBal.slice(0, 6)}
+                    {currency}
+                  </a>
+                </div>
+              ) : (
+                <div className="header__account">
+                  <a onClick={() => connectMetamask()}>Connect Wallet</a>
+                </div>
+              )}
             </div>
           </div>
         </div>
