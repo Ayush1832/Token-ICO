@@ -73,7 +73,7 @@ const Header = ({
                   </li>
                   <li>
                     <a className="scrollspy-btn" href="#roadmap">
-                      RoadMap
+                      Roadmap
                     </a>
                   </li>
                   <li>

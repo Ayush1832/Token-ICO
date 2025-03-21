@@ -132,7 +132,6 @@ const Hero = ({
         </div>
       </div>
 
-
       <div className="hero__coin">
         <div className="coin coin--1">
           <img src="assets/img/icon/coin1.png" alt="" />
