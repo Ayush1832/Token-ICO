@@ -107,19 +107,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* <div className="footer__icoon-shape">
-        <div className="icon icon--1">
-          <div>
-            <img src="assets/img/shape/f_icon1.png" alt="" />
-          </div>
-        </div>
-
-        <div className="icon icon--2">
-          <div>
-            <img src="assets/img/shape/f_icon2.png" alt="" />
-          </div>
-        </div>
-      </div> */}
     </footer>
   );
 };
