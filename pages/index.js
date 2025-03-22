@@ -171,7 +171,7 @@ function index() {
         <About />
         <Features />
         <Token />
-        <TokenInfo detail={detail} />
+        <TokenInfo detail={detail} currency={currency}/>
         <Team />
         <Faq />
         <Contact />
