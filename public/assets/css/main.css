@@ -65,6 +65,7 @@ body {
   padding: 0;
   margin: 0;
   font-weight: 400;
+  height: 100%;
   position: relative;
   font-family: var(--font-body);
   font-size: 16px;
@@ -10613,4 +10614,34 @@ blockquote span {
   border-top: 1px solid #1a1f2e;
 }
 
+/* Add this at the end of your CSS file to override any existing styles */
+.site-footer__ico {
+  padding-bottom: 0 !important; /* Remove bottom padding */
+  margin-bottom: 0 !important;  /* Remove bottom margin */
+}
+
+.footer__bottom {
+  margin-bottom: 0 !important;  /* Remove bottom margin */
+  padding-bottom: 0 !important; /* Remove bottom padding */
+}
+
+.footer__copyright {
+  margin-bottom: 0 !important;  /* Remove bottom margin */
+  padding-bottom: 0 !important; /* Remove bottom padding */
+}
+
+.footer__copyright-inner {
+  margin-bottom: 0 !important;  /* Remove bottom margin */
+  padding-bottom: 0 !important; /* Remove bottom padding */
+}
+
+.content {
+  flex: 1; /* Pushes the footer to the bottom */
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 /*# sourceMappingURL=main.css.map */

@@ -14,12 +14,15 @@ const Footer = () => {
       className="site-footer__ico pos-rel"
       style={{
         position: "relative",
-        zIndex: "1", // Lower z-index than contact section
-        paddingTop: "70px", // Added padding to push content down
+        zIndex: 1,
+        paddingTop: "50px", // Maintain spacing from Contact section
+        paddingBottom: "0px", // Remove bottom padding to remove extra space
         background: "#141530",
       }}
     >
-      <div className="container">
+      <div className="container" style={{ marginBottom: "0px" }}>
+        {" "}
+        {/* Remove bottom margin */}
         <div className="row mt-none-30">
           <div className="col-lg-4 mt-30">
             <div className="footer__widget footer__subscribe">
@@ -35,7 +38,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         <div className="footer__bottom ul_li_between mt-50">
           <div className="footer__logo mt-20">
             <a href="#">
@@ -73,7 +75,8 @@ const Footer = () => {
       </div>
 
       <div className="footer__copyright mt-35">
-        <div className="container">
+        <div className="container" style={{ marginBottom: "0px" }}>
+          {" "}
           <div className="footer__copyright-inner ul_li_between">
             <div className="footer__copyright-text mt-15">
               Copyright @ 2025 @Ayush_Nayak All rights reserved

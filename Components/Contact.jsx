@@ -18,10 +18,10 @@ const Contact = () => {
       id="contact"
       className="ico-contact pos-rel"
       style={{
-        marginBottom:
-          "300px" /* Increased margin to create more space for button */,
+        marginBottom: "50px", // Ensure enough space between Contact and Footer
+        paddingBottom: "70px", // Increased padding to push Footer down
         position: "relative",
-        zIndex: 1,
+        zIndex: 2, // Ensure it stays above the Footer
       }}
     >
       <div className="container">
@@ -35,7 +35,7 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Ether name"
+                  placeholder="Enter name"
                 />
               </div>
 
@@ -44,7 +44,7 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Ether email"
+                  placeholder="Enter email"
                 />
               </div>
 
@@ -53,7 +53,7 @@ const Contact = () => {
                   type="message"
                   id="message"
                   name="message"
-                  placeholder="Ether message"
+                  placeholder="Enter message"
                 ></textarea>
               </div>
               <div className="ico-contact__btn text-center mt-10">
@@ -64,7 +64,7 @@ const Contact = () => {
                   style={{
                     position: "relative",
                     zIndex: "10",
-                  }} /* Ensure button stays on top */
+                  }} // Ensure button stays on top
                 >
                   Send Message
                 </button>
@@ -94,8 +94,7 @@ const Contact = () => {
           left: "0",
           width: "100%",
           zIndex: "-1",
-          pointerEvents:
-            "none" /* Ensures shapes don't interfere with clicks */,
+          pointerEvents: "none", // Ensures shapes don't interfere with clicks
         }}
       >
         <div className="shape shape--1">
