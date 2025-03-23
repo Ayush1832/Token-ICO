@@ -14,7 +14,7 @@ const Owner = ({
   setOpenUpdateAddress,
 }) => {
   return (
-    <section className="team pos-rel">
+    <section className="team pos-rel mt-20">
       <div className="container">
         <div className="new-woner team__wrap ul_li">
           <div className="team__item">
