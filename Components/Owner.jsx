@@ -16,7 +16,7 @@ const Owner = ({
   return (
     <section className="team pos-rel mt-20">
       <div className="container">
-        <div className="new-woner team__wrap ul_li">
+        <div className="new-owner team__wrap ul_li">
           <div className="team__item">
             <div className="avatar">
               <img src="assets/img/shape/c_shape1.png" alt="" />
@@ -76,7 +76,7 @@ const Owner = ({
               <span>If you can</span>
             </div>
 
-            <div className="team__social ul_li_cenetr">
+            <div className="team__social ul_li_center">
               <span
                 onClick={() => (setOwnerModel(false), setOpenDonate(true))}
                 className="h-icon"
