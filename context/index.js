@@ -82,8 +82,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
 
         if (availableTokens > 1) {
           const price = ethers.utils.formatEther(
-            tokenDetails.tokenPrice.toString()
-          );
+            tokenDetails.tokenPrice.toString()) * Number(amount);
 
           const payAmount = ethers.utils.parseUnits(price.toString(), "ether");
 
@@ -232,7 +231,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
     }
   };
 
-  const TRANSFER_TOKEN = async () => {
+  const TRANSFER_TOKEN = async (transfer) => {
     try {
       setLoader(true);
       const { _tokenAddress, _sendTo, _amount } = transfer;

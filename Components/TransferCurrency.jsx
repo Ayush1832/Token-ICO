@@ -24,7 +24,7 @@ const TransferCurrency = ({
         if (balance == undefined) {
           console.log("Kindly paste the token address");
         } else {
-          setTokenDetails(balance);
+          setReceiver(balance);
           console.log(balance);
         }
         setLoader(false);
@@ -57,9 +57,9 @@ const TransferCurrency = ({
                     type="text"
                     placeholder="_receiver"
                     onChange={(e) => (
-                      setToken({
-                        ...tokenDetails,
-                        _tokenAddress: e.target.value,
+                      setTransfer({
+                        ...transfer,
+                        _receiver: e.target.value,
                       }),
                       setAddress(e.target.value)
                     )}
@@ -70,7 +70,7 @@ const TransferCurrency = ({
               <div className="col-lg-12">
                 <input
                   type="text"
-                  placeholder="_sendTo"
+                  placeholder="_amount"
                   onChange={(e) =>
                     setTransfer({
                       ...transfer,
@@ -117,7 +117,7 @@ const TransferCurrency = ({
           <img src="assets/img/shape/c_shape2.png" alt="" />
         </div>
         <div className="shape shape--3">
-          <img src="assets/img/shape/c_shape3.png" alt="" />
+          <img src="assets/img/shape/c_shape1.png" alt="" />
         </div>
       </div>
     </section>

@@ -158,7 +158,7 @@ function index() {
           currency={currency}
           ownerModel={ownerModel}
         />
-        <SideBar />
+        <SideBar setOwnerModel={setOwnerModel} ownerModel={ownerModel} />
         <Hero
           setBuyModel={setBuyModel}
           account={account}
@@ -171,7 +171,7 @@ function index() {
         <About />
         <Features />
         <Token />
-        <TokenInfo detail={detail} currency={currency}/>
+        <TokenInfo detail={detail} currency={currency} />
         <Team />
         <Faq />
         <Contact />

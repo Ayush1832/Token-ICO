@@ -90,7 +90,7 @@ const Owner = ({
           </div>
 
           {
-            (account = detail?.owner && (
+            (account == detail?.owner && (
               <>
                 <div className="team__item">
                   <div className="avatar">

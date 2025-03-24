@@ -33,7 +33,7 @@ const UpdatePrice = ({
               </p>
 
               <div className="ico-contact__btn text-center mt-10">
-                <button onClick={() => UPDATE_TOKEN_PRICE(donateFund)} className="thm-btn">
+                <button onClick={() => UPDATE_TOKEN_PRICE(price)} className="thm-btn">
                   Update Price
                 </button>
               </div>
@@ -63,7 +63,7 @@ const UpdatePrice = ({
           <img src="assets/img/shape/c_shape2.png" alt="" />
         </div>
         <div className="shape shape--3">
-          <img src="assets/img/shape/c_shape3.png" alt="" />
+          <img src="assets/img/shape/c_shape1.png" alt="" />
         </div>
       </div>
     </section>

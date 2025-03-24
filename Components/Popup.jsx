@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {shortenAddress} from "../Utils/index";
+import { shortenAddress } from "../Utils/index";
 
 const Popup = ({
   setBuyModel,
@@ -47,8 +47,8 @@ const Popup = ({
                 <input
                   type="text"
                   value={
-                    account
-                      ? `${account?.tokenPrice} ${currency}`
+                    amount
+                      ? `${amount * detail?.tokenPrice} ${currency}`
                       : "Output value"
                   }
                 />
@@ -56,18 +56,20 @@ const Popup = ({
 
               <div className="col-lg-12">
                 <textarea
+                  disabled
                   name="message"
                   cols="30"
                   rows="10"
-                  placeholder={`Current Price: ${detail?.tokenBal}${detail?.symbol} Token Address: ${detail?.tokenBal} ${shortenAddress(detail?.tokenAddr)}`}
+                  placeholder={`Current Price: ${detail?.tokenBal}${
+                    detail?.symbol
+                  } Token Address: ${detail?.tokenBal} ${shortenAddress(
+                    detail?.tokenAddr
+                  )}`}
                 ></textarea>
               </div>
 
               <div className="ico-contact__btn text-center mt-10">
-                <button
-                  onClick={() => BUY_TOKEN(amount)}
-                  className="thm-btn"
-                >
+                <button onClick={() => BUY_TOKEN(amount)} className="thm-btn">
                   Buy Token
                 </button>
               </div>
@@ -97,7 +99,7 @@ const Popup = ({
           <img src="assets/img/shape/c_shape2.png" alt="" />
         </div>
         <div className="shape shape--3">
-          <img src="assets/img/shape/c_shape3.png" alt="" />
+          <img src="assets/img/shape/c_shape1.png" alt="" />
         </div>
       </div>
     </section>

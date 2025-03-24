@@ -34,10 +34,10 @@ const Hero = ({
       } else {
         setPercentage(percentageNew);
       }
-      const timer = setTimeout(calculatePercentage, 1000);
-
-      return () => clearTimeout(timer);
     };
+    const timer = setTimeout(calculatePercentage, 1000);
+
+    return () => clearTimeout(timer);
   }, [detail]);
 
   const ADD_TOKEN_METAMASK = async () => {
@@ -92,7 +92,7 @@ const Hero = ({
                     className="progress-bar"
                     role="progressbar"
                     style={{
-                      width: `${percentage}`,
+                      width: `${percentage}%`,
                     }}
                   />
                 </div>

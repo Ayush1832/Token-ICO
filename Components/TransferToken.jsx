@@ -32,7 +32,10 @@ const TransferToken = ({
     }
   }, [TransferToken]);
   return (
-    <section className="new-margin ico-contact pos-rel" style={{ paddingTop: '120px' }}>
+    <section
+      className="new-margin ico-contact pos-rel"
+      style={{ paddingTop: "120px" }}
+    >
       <div className="container">
         <div className="ico-contact__wrap">
           <h2 className="title">
@@ -54,7 +57,7 @@ const TransferToken = ({
                     placeholder="Token Address"
                     onChange={(e) => (
                       setToken({
-                        ...tokenDetails,
+                        ...token,
                         _tokenAddress: e.target.value,
                       }),
                       setTransferToken(e.target.value)
@@ -69,7 +72,7 @@ const TransferToken = ({
                   placeholder="_sendTo"
                   onChange={(e) =>
                     setToken({
-                      ...tokenDetails,
+                      ...token,
                       _sendTo: e.target.value,
                     })
                   }
@@ -78,10 +81,10 @@ const TransferToken = ({
               <div className="col-lg-12">
                 <input
                   type="text"
-                  placeholder="_sendTo"
+                  placeholder="_amount"
                   onChange={(e) =>
                     setToken({
-                      ...tokenDetails,
+                      ...token,
                       _amount: e.target.value,
                     })
                   }
@@ -122,7 +125,7 @@ const TransferToken = ({
           <img src="assets/img/shape/c_shape2.png" alt="" />
         </div>
         <div className="shape shape--3">
-          <img src="assets/img/shape/c_shape3.png" alt="" />
+          <img src="assets/img/shape/c_shape1.png" alt="" />
         </div>
       </div>
     </section>

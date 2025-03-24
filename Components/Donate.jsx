@@ -60,7 +60,7 @@ const Donate = ({ detail, currency, setOpenDonate, DONATE }) => {
           <img src="assets/img/shape/c_shape2.png" alt="" />
         </div>
         <div className="shape shape--3">
-          <img src="assets/img/shape/c_shape3.png" alt="" />
+          <img src="assets/img/shape/c_shape1.png" alt="" />
         </div>
       </div>
     </section>
