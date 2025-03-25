@@ -46,11 +46,8 @@ const Token = () => {
               </ul>
 
               <div className="token__info mt-40">
-                <h2 className="">1CNL = 10001 BTC</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eligendi, minus. Maxime eligendi minus dicta explicabo
-                </p>
+                <h2 className="">1AN = 0.0001 MATIC</h2>
+                <p>Buy our token</p>
                 <div className="token-btn mt040">
                   <a href="#" className="thm-btn">
                     Buy Now

@@ -39,11 +39,11 @@ const SideBar = ({ setOwnerModel, ownerModel }) => {
               Team
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="##!" className="">
               Blog
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="#!" className="">
               Get In Touch

@@ -10,16 +10,16 @@ import { FaPlus } from "react-icons/fa6";
 
 const Team = () => {
   return (
-    <section id="team" className="team poss-rel">
+    <section id="team" className="team poss-rel ">
       <div className="container">
         <div className="sec-title text-center mb-70">
-          <h5 className="sec-title__subtitle">Our Team</h5>
-          <h2 className="sec-title__title">Meet our skilled team</h2>
+          <h5 className="sec-title__subtitle">Team</h5>
+          <h2 className="sec-title__title">About Me</h2>
         </div>
         <div className="team__wrap ul_li">
           <div className="team__item">
             <div className="avatar">
-              <img src="assets/img/team/img_01.png" alt="" />
+              <img src="assets/img/team/Ayush Nayak.jpg" alt="" />
             </div>
             <div className="team__info text-center mb-20">
               <h3>Ayush Nayak</h3>
@@ -28,28 +28,18 @@ const Team = () => {
             <div className="team__social ul_li_center">
               <ul className="team__social-link link-left ul_li">
                 <li>
-                  <a href="#">
+                  <a href="https://github.com/Ayush1832">
                     <TiSocialGithub />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="https://www.linkedin.com/in/ayushh-nayak/">
                     <TiSocialLinkedin />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="https://x.com/Ayush_n_18">
                     <TiSocialTwitter />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <TiSocialInstagram />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <TiSocialFacebook />
                   </a>
                 </li>
               </ul>

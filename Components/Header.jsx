@@ -81,11 +81,11 @@ const Header = ({
                       Team
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a className="scrollspy-btn" href="#faq">
                       Faq
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a className="scrollspy-btn" href="#contact">
                       Contact

@@ -173,7 +173,7 @@ function index() {
         <Token />
         <TokenInfo detail={detail} currency={currency} />
         <Team />
-        <Faq />
+        {/* <Faq /> */}
         <Contact />
         <Footer />
       </div>
